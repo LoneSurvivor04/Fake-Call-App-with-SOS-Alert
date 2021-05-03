@@ -5,7 +5,7 @@
     android:id="@+id/sos"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#03A9F4"
+    android:background="#E64A19"
     tools:context=".MainActivity">
 
     <TextView

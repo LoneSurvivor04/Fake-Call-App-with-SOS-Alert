@@ -58,6 +58,16 @@ public class MainActivity2 extends AppCompatActivity {
         //get the permissions we have asked for before but are not granted..
         //we will store this in a global list to access later.
 
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_IMMERSIVE
+                        // Set the content to appear under the system bars so that the
+                        // content doesn't resize when the system bars hide and show.
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        // Hide the nav bar and status bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
             if (permissionsToRequest.size() > 0)

@@ -19,8 +19,12 @@ public class Schedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        View decorView = getWindow().getDecorView();
+        decorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
 
         rGroup = (RadioGroup) findViewById(R.id.rBtnGroup);
         rGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

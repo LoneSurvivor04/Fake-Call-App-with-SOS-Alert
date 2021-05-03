@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:maxWidth="800dp"
-    android:maxHeight="800dp"
+    android:background="#000000"
     tools:context=".CallerInfo">
 
     <TextView
         android:id="@+id/Caller_Details"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#03A9F4"
+        android:background="#036785"
         android:fontFamily="@font/acme"
         android:gravity="center"
         android:paddingLeft="10dp"
@@ -30,7 +29,8 @@
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
-        android:layout_height="425dp"
+        android:layout_height="wrap_content"
+        android:background="#040404"
         android:paddingLeft="5dp"
         android:paddingTop="5dp"
         android:paddingRight="5dp"
@@ -40,7 +40,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Caller_Details"
         app:layout_constraintWidth_max="wrap"
-        app:srcCompat="@drawable/def_trusted_contact_img" />
+        app:srcCompat="@drawable/caller_info" />
 
     <TextView
         android:id="@+id/b4"
@@ -49,16 +49,14 @@
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="25dp"
-        android:layout_marginBottom="24dp"
         android:clickable="false"
         android:fontFamily="@font/acme"
         android:gravity="center"
         android:paddingTop="6dp"
         android:paddingBottom="6dp"
         android:text="Caller Name"
-        android:textColor="#040404"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/b6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
@@ -74,7 +72,7 @@
         android:paddingTop="6dp"
         android:paddingBottom="6dp"
         android:text="Phone No"
-        android:textColor="#040404"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/b4" />
@@ -96,6 +94,7 @@
         android:maxLength="10"
         android:minLines="1"
         android:paddingTop="6dp"
+        android:textColor="#FFFFFF"
         android:textSize="26sp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,11 +106,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:background="#03A9F4"
+        android:background="#036785"
         android:fontFamily="@font/acme"
         android:text="Save"
         android:textSize="24sp"
-        app:backgroundTint="#03A9F4"
+        app:backgroundTint="#036785"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phno" />
@@ -125,13 +124,12 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="21dp"
         android:ems="10"
         android:fontFamily="@font/acme"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
         android:textSize="26sp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/phno"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/b4"
         app:layout_constraintTop_toBottomOf="@+id/imageButton" />

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context=".MainActivity2">
 
     <TextView
@@ -17,7 +18,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:background="#03A9F4"
+        android:background="#E64A19"
         android:fontFamily="@font/acme"
         android:gravity="center"
         android:padding="10dp"
@@ -35,14 +36,12 @@
 
     <ImageView
         android:id="@+id/def_contact"
-        android:layout_width="204dp"
-        android:layout_height="218dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="500dp"
         android:background="#FFFFFF"
         android:foregroundGravity="center"
         android:src="@drawable/contact"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -51,7 +50,7 @@
         android:id="@+id/sch"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="38dp"
         android:layout_marginRight="38dp"
         android:fontFamily="@font/acme"
@@ -59,7 +58,7 @@
         android:text="Schedule"
         android:textSize="18sp"
         android:textStyle="normal"
-        app:backgroundTint="#03A9F4"
+        app:backgroundTint="#E64A19"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/def_contact" />
 
@@ -69,14 +68,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
         android:layout_marginLeft="38dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="60dp"
         android:padding="8dp"
         android:text="Caller Info"
+        android:textColor="#E64A19"
         android:textSize="18sp"
-        android:textStyle="normal"
-        app:backgroundTint="#03A9F4"
+        android:textStyle="normal|bold"
+        app:backgroundTint="#000000"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/def_contact" />
+        app:layout_constraintTop_toBottomOf="@+id/def_contact"
+        app:strokeColor="#E64A19"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/trust"
@@ -87,11 +89,14 @@
         android:layout_marginRight="38dp"
         android:padding="8dp"
         android:text="Trusted"
+        android:textColor="#E64A19"
         android:textSize="18sp"
         android:textStyle="normal"
-        app:backgroundTint="#03A9F4"
+        app:backgroundTint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sch" />
+        app:layout_constraintTop_toBottomOf="@+id/sch"
+        app:strokeColor="#E64A19"
+        app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/callnow"
@@ -105,7 +110,7 @@
         android:text="Call Now"
         android:textSize="18sp"
         android:textStyle="normal"
-        app:backgroundTint="#03A9F4"
+        app:backgroundTint="#E64A19"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/b1" />
 
@@ -118,7 +123,7 @@
         android:text="SOS ALERT"
         android:textSize="24sp"
         android:textStyle="normal"
-        app:backgroundTint="#FF9800"
+        app:backgroundTint="#FF0000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
