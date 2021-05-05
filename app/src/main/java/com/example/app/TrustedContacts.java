@@ -94,6 +94,7 @@ public class TrustedContacts extends AppCompatActivity {
                 builder.setTitle("User Entries");
                 builder.setMessage(buffer.toString());
                 builder.show();
-            }        });
+            }
+        });
     }
 }
