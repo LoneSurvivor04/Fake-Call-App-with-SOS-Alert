@@ -57,13 +57,7 @@ public class MainActivity2 extends AppCompatActivity {
         permissionsToRequest = findUnAskedPermissions(permissions);
         //get the permissions we have asked for before but are not granted..
         //we will store this in a global list to access later.
-
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                        View.SYSTEM_UI_FLAG_IMMERSIVE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+        
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 

@@ -1,5 +1,6 @@
 package com.example.app;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -27,6 +28,9 @@ public class Caller extends AppCompatActivity {
         setContentView(R.layout.activity_caller);
 
         DB1 = new DatabaseHelper2(this);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(

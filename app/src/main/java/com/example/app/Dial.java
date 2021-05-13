@@ -1,5 +1,6 @@
 package com.example.app;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ public class Dial extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dial);
+
+
 
         chronometer = findViewById(R.id.chronometer);
         chronometer.setFormat("%s");
@@ -47,6 +50,9 @@ public class Dial extends AppCompatActivity {
             b3.setText(DatabaseHelper2.nm.getString("key"));
             b4.setText(DatabaseHelper2.ct.getString("lock"));
         }
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         View decorView = getWindow().getDecorView();
         decorView.setSystemUiVisibility(

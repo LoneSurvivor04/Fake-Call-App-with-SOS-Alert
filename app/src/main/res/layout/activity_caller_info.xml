@@ -29,7 +29,7 @@
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="#040404"
         android:paddingLeft="5dp"
         android:paddingTop="5dp"

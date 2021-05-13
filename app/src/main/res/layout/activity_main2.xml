@@ -36,11 +36,12 @@
 
     <ImageView
         android:id="@+id/def_contact"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:background="#FFFFFF"
+        android:background="#000000"
         android:foregroundGravity="center"
+        android:scaleType="center"
         android:src="@drawable/contact"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,31 +51,31 @@
         android:id="@+id/sch"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/acme"
+        android:foregroundGravity="center_horizontal"
         android:padding="8dp"
         android:text="Schedule"
         android:textSize="18sp"
         android:textStyle="normal"
         app:backgroundTint="#E64A19"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/b1"
         app:layout_constraintTop_toBottomOf="@+id/def_contact" />
 
     <Button
         android:id="@+id/b1"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
+        android:foregroundGravity="center_horizontal"
         android:padding="8dp"
         android:text="Caller Info"
         android:textColor="#E64A19"
         android:textSize="18sp"
         android:textStyle="normal|bold"
         app:backgroundTint="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/sch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/def_contact"
         app:strokeColor="#E64A19"
@@ -85,8 +86,6 @@
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
         android:padding="8dp"
         android:text="Trusted"
         android:textColor="#E64A19"
@@ -94,6 +93,7 @@
         android:textStyle="normal"
         app:backgroundTint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/callnow"
         app:layout_constraintTop_toBottomOf="@+id/sch"
         app:strokeColor="#E64A19"
         app:strokeWidth="1dp" />
@@ -102,8 +102,6 @@
         android:id="@+id/callnow"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginLeft="38dp"
         android:layout_marginTop="26dp"
         android:fontFamily="@font/acme"
         android:padding="8dp"
@@ -111,22 +109,38 @@
         android:textSize="18sp"
         android:textStyle="normal"
         app:backgroundTint="#E64A19"
+        app:layout_constraintEnd_toStartOf="@+id/trust"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/b1" />
 
     <Button
         android:id="@+id/sosbut"
-        android:layout_width="356dp"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
         android:layout_marginTop="26dp"
         android:padding="8dp"
         android:text="SOS ALERT"
         android:textSize="24sp"
         android:textStyle="normal"
         app:backgroundTint="#FF0000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view6"
+        app:layout_constraintStart_toEndOf="@+id/view5"
         app:layout_constraintTop_toBottomOf="@+id/callnow" />
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="29dp"
+        android:layout_height="166dp"
+        app:layout_constraintEnd_toStartOf="@+id/callnow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/b1" />
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="29dp"
+        android:layout_height="166dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/trust"
+        app:layout_constraintTop_toBottomOf="@+id/sch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
