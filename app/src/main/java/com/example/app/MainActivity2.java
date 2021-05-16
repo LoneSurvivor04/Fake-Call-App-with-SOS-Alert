@@ -28,11 +28,8 @@ public class MainActivity2 extends AppCompatActivity {
     Button b1,b2,sos,tb,cn,sch;
     DatabaseHelper DB;
     double longitude,latitude;
-
-    private ArrayList permissionsToRequest;
-    private ArrayList permissionsRejected = new ArrayList();
-    private ArrayList permissions = new ArrayList();
-    private final static int ALL_PERMISSIONS_RESULT = 101;
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0;
+    LocationTrack gpsTracker;
     LocationTrack locationTrack;
 
     @Override
@@ -52,18 +49,15 @@ public class MainActivity2 extends AppCompatActivity {
 
         DB = new DatabaseHelper(this);
 
-        permissions.add(ACCESS_FINE_LOCATION);
-        permissions.add(ACCESS_COARSE_LOCATION);
-        permissionsToRequest = findUnAskedPermissions(permissions);
-        //get the permissions we have asked for before but are not granted..
-        //we will store this in a global list to access later.
-        
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
-            if (permissionsToRequest.size() > 0)
-                requestPermissions((String[]) permissionsToRequest.toArray(new String[permissionsToRequest.size()]), ALL_PERMISSIONS_RESULT);
+        try {
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
+
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +86,7 @@ public class MainActivity2 extends AppCompatActivity {
         sos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                location();
+                getLocation();
             }
         });
 
@@ -108,32 +102,32 @@ public class MainActivity2 extends AppCompatActivity {
         });
     }
 
-    private void location()
-    {
-        int permChk= ContextCompat.checkSelfPermission(MainActivity2.this, Manifest.permission.SEND_SMS);
-
-        if(permChk== PackageManager.PERMISSION_GRANTED)
-        {
-            locationTrack = new LocationTrack(MainActivity2.this);
-            if (locationTrack.canGetLocation()) {
-                longitude = locationTrack.getLongitude();
-                latitude = locationTrack.getLatitude();
-
-            } else {
-
-                locationTrack.showSettingsAlert();
-            }
-            msgperm(latitude,longitude);
-        }
-        else
-        {
-            ActivityCompat.requestPermissions(MainActivity2.this,new String[]{Manifest.permission.SEND_SMS},0);
+    public void getLocation(){
+        gpsTracker = new LocationTrack(MainActivity2.this);
+        if(gpsTracker.canGetLocation()){
+            latitude = gpsTracker.getLatitude();
+            longitude = gpsTracker.getLongitude();
+            msgperm();;
+        }else{
+            gpsTracker.showSettingsAlert();
         }
     }
 
 
-    private void msgperm(Double latitude,Double longitude)
+    private void msgperm()
     {
+        if (ContextCompat.checkSelfPermission(this,
+            Manifest.permission.SEND_SMS)
+            != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.SEND_SMS)) {
+
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.SEND_SMS},
+                    MY_PERMISSIONS_REQUEST_SEND_SMS);
+                }
+        }
         Cursor res = DB.sndsos();
         SmsManager sms=SmsManager.getDefault();
         if(res.getCount()==0){
@@ -147,91 +141,27 @@ public class MainActivity2 extends AppCompatActivity {
         }
     }
 
-
-    private ArrayList findUnAskedPermissions(ArrayList wanted) {
-        ArrayList result = new ArrayList();
-
-        for (Object perm : wanted) {
-            if (!hasPermission((String) perm)) {
-                result.add(perm);
-            }
-        }
-
-        return result;
-    }
-
-    private boolean hasPermission(String permission) {
-        if (canMakeSmores()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                return (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED);
-            }
-        }
-        return true;
-    }
-
-    private boolean canMakeSmores() {
-        return (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP_MR1);
-    }
-
-
-    @TargetApi(Build.VERSION_CODES.M)
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-
+    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
         switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-            case ALL_PERMISSIONS_RESULT:
-                for (Object perms : permissionsToRequest) {
-                    if (!hasPermission((String) perms)) {
-                        permissionsRejected.add(perms);
-                    }
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            "SMS failed, please try again.", Toast.LENGTH_LONG).show();
+                    return;
                 }
-
-                if (permissionsRejected.size() > 0) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        if (shouldShowRequestPermissionRationale((String) permissionsRejected.get(0))) {
-                            showMessageOKCancel("These permissions are mandatory for the application. Please allow access.",
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                requestPermissions((String[]) permissionsRejected.toArray(new String[permissionsRejected.size()]), ALL_PERMISSIONS_RESULT);
-                                            }
-                                        }
-                                    });
-                            return;
-                        }
-                    }
-
-                }
-
-                break;
+            }
         }
 
-    }
-
-    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(MainActivity2.this)
-                .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
-                .create()
-                .show();
-    }
-
-
-    @Override
-    public void onBackPressed (){
-        Intent setIntent = new Intent(Intent.ACTION_MAIN);
-        setIntent.addCategory(Intent.CATEGORY_HOME);
-        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(setIntent);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        locationTrack.stopListener();
+        locationTrack.stopUsingGPS();
     }
 
     @Override
@@ -246,9 +176,17 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     public boolean onKeyLongPress( int keyCode, KeyEvent event ) {
         if( keyCode == KeyEvent.KEYCODE_VOLUME_DOWN ) {
-            location();
+            getLocation();
             return true;
         }
         return super.onKeyLongPress( keyCode, event );
+    }
+
+    @Override
+    public void onBackPressed (){
+        Intent setIntent = new Intent(Intent.ACTION_MAIN);
+        setIntent.addCategory(Intent.CATEGORY_HOME);
+        setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(setIntent);
     }
 }
